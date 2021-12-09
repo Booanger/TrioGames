@@ -4945,6 +4945,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7957300587539580667, guid: e2171bbd175bf88489e5004cb04976b8, type: 3}
   m_PrefabInstance: {fileID: 362967702}
   m_PrefabAsset: {fileID: 0}
+--- !u!208 &359727742
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359727741}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1.205, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &359727746 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7957300587652932554, guid: e2171bbd175bf88489e5004cb04976b8, type: 3}
@@ -5055,6 +5071,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7957300587539580668, guid: e2171bbd175bf88489e5004cb04976b8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7957300587539580669, guid: e2171bbd175bf88489e5004cb04976b8, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -5074,6 +5094,14 @@ PrefabInstance:
     - target: {fileID: 7957300587539580671, guid: e2171bbd175bf88489e5004cb04976b8, type: 3}
       propertyPath: m_Simulated
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957300587539580671, guid: e2171bbd175bf88489e5004cb04976b8, type: 3}
+      propertyPath: m_LinearDrag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957300587539580671, guid: e2171bbd175bf88489e5004cb04976b8, type: 3}
+      propertyPath: m_AngularDrag
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7957300587539580671, guid: e2171bbd175bf88489e5004cb04976b8, type: 3}
       propertyPath: m_UseAutoMass
@@ -5877,7 +5905,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.41}
+  m_Size: {x: 1, y: 2.4}
   m_EdgeRadius: 0
 --- !u!114 &592940310
 MonoBehaviour:
@@ -5962,7 +5990,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2.4
-  m_BaseOffset: 1.2
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &592940315

@@ -7,11 +7,14 @@ public class AiController : MonoBehaviour
 {
     [SerializeField] Transform target;
     NavMeshAgent agent;
+    CarController aiCar;
+
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        aiCar = GetComponent<CarController>();
 		agent.updateRotation = false;
 		agent.updateUpAxis = false;
     }
@@ -20,5 +23,8 @@ public class AiController : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.position);
+        Debug.Log(agent.steeringTarget.magnitude);
+        Debug.DrawLine(transform.position,agent.steeringTarget);
+        //aiCar.SetInputVector();
     }
 }
