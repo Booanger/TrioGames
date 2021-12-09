@@ -6731,9 +6731,8 @@ MonoBehaviour:
   speedometer: {fileID: 1775035759}
   countdown: {fileID: 1086478130}
   timeCounter: {fileID: 1114827143}
-  car: {fileID: 359727741}
+  playerCar: {fileID: 359727741}
   waitingTime: 3
-  timeStart: 0
 --- !u!4 &1499541451
 Transform:
   m_ObjectHideFlags: 0

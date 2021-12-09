@@ -8,11 +8,11 @@ public class CameraFollow : MonoBehaviour
 
     public float smoothSpeed = 10f;
     public Vector3 offset;
-    private Camera camera;
+    private Camera mainCam;
 
     private void Awake()
     {
-        camera = GetComponent<Camera>();
+        mainCam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -23,8 +23,8 @@ public class CameraFollow : MonoBehaviour
 
         // Change Camera size over player speed
         float cameraSize = 10f + (desiredPosition - transform.position).magnitude;
-        
-        camera.orthographicSize = cameraSize;
+
+        mainCam.orthographicSize = cameraSize;
 
         // * Time.deltaTime
         transform.position = smoothedPosition;

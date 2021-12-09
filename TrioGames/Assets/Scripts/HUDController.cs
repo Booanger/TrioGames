@@ -10,48 +10,23 @@ public class HUDController : MonoBehaviour
     [SerializeField] TMP_Text countdown;
     [SerializeField] TMP_Text timeCounter;
 
-    [SerializeField] GameObject car;
+    [SerializeField] GameObject playerCar;
     [SerializeField] int waitingTime = 3;
 
-    private Vector3 prevPosition = Vector3.zero;
-    private Vector3 deltaPosition;
-    private float metersTravelledPerSecond;
-    private IEnumerator coroutine;
-    public float timeStart = 0f;
+    private float timeStart = 0f;
     bool timerActive = false;
-
-    void Awake()
-    {
-        prevPosition = car.transform.position;
-    }
+    private float currentCarSpeed;
 
     void Start()
     {
         timeCounter.text = timeStart.ToString("F2");
         countdown.text = waitingTime.ToString();
 
-        coroutine = WaitForStart(waitingTime);
-        StartCoroutine(coroutine);
-        
+        StartCoroutine(WaitForStart(waitingTime));
     }
 
-    // Update is called once per frame
     void Update()
     {
-        deltaPosition = car.transform.position - prevPosition;
-        float distance = deltaPosition.magnitude;
-
-        if (distance < 0.0001f)
-        {
-            distance = 0f;
-        }
-
-        metersTravelledPerSecond = distance / Time.deltaTime;
-
-        speedometer.text = System.String.Format("{0:N0} mps", metersTravelledPerSecond);
-
-        prevPosition = car.transform.position;
-
         if (timerActive)
         {
             timeStart += Time.deltaTime;
@@ -59,9 +34,15 @@ public class HUDController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        currentCarSpeed = playerCar.GetComponent<CarController>().GetVelocityVersusUp();
+        speedometer.text = System.String.Format("{0:N0} mps", currentCarSpeed);
+    }
+
     private IEnumerator WaitForStart(int waitTime)
     {
-        car.GetComponent<CarController>().enabled = false;
+        playerCar.GetComponent<CarController>().enabled = false;
         while (waitTime != 0)
         {
             yield return new WaitForSeconds(1);
@@ -69,7 +50,7 @@ public class HUDController : MonoBehaviour
             countdown.text = waitTime.ToString();
         }
         Destroy(countdown);
-        car.GetComponent<CarController>().enabled = true;
+        playerCar.GetComponent<CarController>().enabled = true;
         timerActive = true;
     }
 }
