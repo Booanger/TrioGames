@@ -136,4 +136,8 @@ public class CarController : MonoBehaviour
 
         accelerationInput = inputVector.y;
     }
+    public float GetVelocityVersusUp()
+    {
+        return velocityVersusUp;
+    }
 }
