@@ -49,7 +49,7 @@ public class CarController : MonoBehaviour
 
         ApplySteering();
 
-        Debug.Log(velocityVersusUp);
+        //Debug.Log(velocityVersusUp);
     }
 
     private void ApplyEngineForce()
