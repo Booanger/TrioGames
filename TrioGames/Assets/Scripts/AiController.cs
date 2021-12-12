@@ -5,14 +5,12 @@ using UnityEngine.AI;
 
 public class AiController : MonoBehaviour
 {
-    public Transform[] points;
 
     [SerializeField] Transform target;
     NavMeshAgent agent;
     CarController aiCar;
     int clockwise;
     int gas;
-    private int destPoint = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +21,7 @@ public class AiController : MonoBehaviour
 		agent.updateUpAxis = false;
     }
 
+    /*
     void GotoNextPoint()
     {
         // Returns if no points have been set up
@@ -35,15 +34,22 @@ public class AiController : MonoBehaviour
         // Choose the next point in the array as the destination,
         // cycling to the start if necessary.
         destPoint = (destPoint + 1) % points.Length;
+    }*/
+
+    public NavMeshAgent GetAgent()
+    {
+        return agent;
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (!agent.pathPending && agent.remainingDistance < 3f)
         {
             GotoNextPoint();
-        }
+        }*/
+
         //agent.SetDestination(target.position);
         //float dotProduct = Vector2.Dot(transform.up, agent.steeringTarget - transform.position);
 
@@ -57,9 +63,6 @@ public class AiController : MonoBehaviour
             //gas = -1;
         }
             
-        
-            
-
         //Debug.DrawLine(new Vector3(0,0,0), agent.nextPosition);
         //Debug.DrawLine(new Vector3(0,0,0), crossProduct);
         Debug.DrawLine(transform.position, agent.steeringTarget);
