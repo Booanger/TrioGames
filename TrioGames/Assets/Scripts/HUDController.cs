@@ -11,6 +11,8 @@ public class HUDController : MonoBehaviour
     [SerializeField] TMP_Text timeCounter;
 
     [SerializeField] GameObject playerCar;
+    CarController[] allCars;
+
     [SerializeField] int waitingTime = 3;
 
     private float timeStart = 0f;
@@ -21,6 +23,7 @@ public class HUDController : MonoBehaviour
     {
         timeCounter.text = timeStart.ToString("F2");
         countdown.text = waitingTime.ToString();
+        allCars = FindObjectsOfType<CarController>();
 
         StartCoroutine(WaitForStart(waitingTime));
     }
@@ -42,7 +45,11 @@ public class HUDController : MonoBehaviour
 
     private IEnumerator WaitForStart(int waitTime)
     {
-        playerCar.GetComponent<CarController>().enabled = false;
+        //playerCar.GetComponent<CarController>().enabled = false;
+        for (int i = 0; i < allCars.Length; i++)
+        {
+            allCars[i].enabled = false;
+        }
         while (waitTime != 0)
         {
             yield return new WaitForSeconds(1);
@@ -50,7 +57,11 @@ public class HUDController : MonoBehaviour
             countdown.text = waitTime.ToString();
         }
         Destroy(countdown);
-        playerCar.GetComponent<CarController>().enabled = true;
+        //playerCar.GetComponent<CarController>().enabled = true;
+        for (int i = 0; i < allCars.Length; i++)
+        {
+            allCars[i].enabled = true;
+        }
         timerActive = true;
     }
 }
