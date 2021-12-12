@@ -22,9 +22,8 @@ public class CameraFollow : MonoBehaviour
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
 
         // Change Camera size over player speed
-        float cameraSize = 10f + (desiredPosition - transform.position).magnitude;
-
-        mainCam.orthographicSize = cameraSize;
+        //float cameraSize = 10f + (desiredPosition - transform.position).magnitude;
+        //mainCam.orthographicSize = cameraSize;
 
         // * Time.deltaTime
         transform.position = smoothedPosition;
