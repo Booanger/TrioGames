@@ -9,7 +9,6 @@ public class HUDController : MonoBehaviour
     [SerializeField] TMP_Text speedometer;
     [SerializeField] TMP_Text countdown;
     [SerializeField] TMP_Text timeCounter;
-    [SerializeField] TMP_Text lapCountText;
 
     [SerializeField] GameObject playerCar;
     CarController[] allCars;
@@ -20,12 +19,8 @@ public class HUDController : MonoBehaviour
     bool timerActive = false;
     private float currentCarSpeed;
 
-    GameStatus gameStatus;
-
     void Start()
     {
-        gameStatus = GetComponent<GameStatus>();
-        lapCountText.text = String.Format("Lap: 1/{0}", gameStatus.GetLapCount());
         timeCounter.text = timeStart.ToString("F2");
         countdown.text = waitingTime.ToString();
         allCars = FindObjectsOfType<CarController>();
@@ -68,15 +63,5 @@ public class HUDController : MonoBehaviour
             allCars[i].enabled = true;
         }
         timerActive = true;
-    }
-
-    public void IncreaseLapCountText()
-    {
-        gameStatus.IncreaseCurrentLap();
-        lapCountText.text = String.Format("Lap: {0}/{1}", gameStatus.GetCurrentLap(), gameStatus.GetLapCount());
-    }
-    public string PrintTimer()
-    {
-        return timeCounter.text;
     }
 }
