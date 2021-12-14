@@ -162,7 +162,7 @@ public class CarController : MonoBehaviour
                 string winner = gameStatus.FindWinner();
                 if (winner == "Player")
                 {
-                    leaderboardController.AddScore("Player", 5);
+                    StartCoroutine(leaderboardController.AddScore("Player", hudController.PrintTimer()));
                 }
                 Debug.Log("Game Over " + winner + " won! " + "In " + hudController.PrintTimer() + " seconds.");
             }

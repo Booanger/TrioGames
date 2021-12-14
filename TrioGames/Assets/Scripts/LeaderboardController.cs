@@ -50,7 +50,7 @@ public class LeaderboardController : MonoBehaviour
         }
     }
 
-    public IEnumerator AddScore(string name, int score)
+    public IEnumerator AddScore(string name, string score)
     {
         string hash = Md5Sum(name + score + secretKey);
         WWWForm form = new WWWForm();
@@ -71,6 +71,23 @@ public class LeaderboardController : MonoBehaviour
                 Debug.Log("Form upload complete!");
             }
         }
+        /*
+        //This connects to a server side php script that will add the name and score to a MySQL DB.
+        // Supply it with a string representing the players name and the players score.
+        string hash = Md5Sum(name + score + secretKey);
+
+        string post_url = addScoreURL + "name=" + WWW.EscapeURL(name) + "&score=" + score + "&hash=" + hash;
+
+        // Post the URL to the site and create a download object to get the result.
+        Debug.Log("Submitting score");
+        WWW hs_post = new WWW(post_url);
+        yield return hs_post; // Wait until the download is done
+        Debug.Log("Score submitted");
+
+        if (hs_post.error != null)
+        {
+            Debug.Log("There was an error posting the high score: " + hs_post.error);
+        }*/
     }
 
     public string Md5Sum(string strToEncrypt)
