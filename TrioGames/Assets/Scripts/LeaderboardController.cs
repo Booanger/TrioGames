@@ -8,14 +8,11 @@ public class LeaderboardController : MonoBehaviour
     private string secretKey = "atilgan";
     private string addScoreURL = "http://zindemedya.com/game/addscore.php";
     private string leaderboardURL = "http://zindemedya.com/game/display.php";
-    string[] temp;
+    string[] stringScores;
+    Score[] scores;
     void Start()
     {
-        // A correct website page.
         StartCoroutine(GetLeaderboard());
-
-        // A non-existing page.
-        //StartCoroutine(GetLeaderboard());
     }
 
     public IEnumerator GetLeaderboard()
@@ -40,14 +37,28 @@ public class LeaderboardController : MonoBehaviour
                 case UnityWebRequest.Result.Success:
                     //Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
 
-                    temp = webRequest.downloadHandler.text.Split(',');
-                    for (int i = 0; i < temp.Length; i++)
+                    stringScores = webRequest.downloadHandler.text.Split(',');
+                    scores = new Score[stringScores.Length];
+                    for (int i = 0; i < stringScores.Length; i++)
                     {
-                        print(temp[i]);
+                        string[] temp = stringScores[i].Split(' ');
+                        string name = "";
+                        for (int j = 0; j < temp.Length-1; j++)
+                        {
+                            name += temp[j];
+                        }
+                        scores[i] = new Score(name, temp[temp.Length - 1]);
+                        print(scores[i].name + " " + scores[i].score);
                     }
                     break;
             }
         }
+    }
+
+    public Score[] GetScoresFromLeaderboard()
+    {
+        StartCoroutine(GetLeaderboard());
+        return scores;
     }
 
     public IEnumerator AddScore(string name, string score)
