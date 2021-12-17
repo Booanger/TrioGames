@@ -21,6 +21,7 @@ public class CarController : MonoBehaviour
 
     HUDController hudController;
     GameStatus gameStatus;
+    LeaderboardController leaderboardController;
 
     // Components
     Rigidbody2D carRigidbody2D;
@@ -31,6 +32,7 @@ public class CarController : MonoBehaviour
         carRigidbody2D = GetComponent<Rigidbody2D>();
         hudController = GameObject.Find("Controller").GetComponent<HUDController>();
         gameStatus = GameObject.Find("Controller").GetComponent<GameStatus>();
+        leaderboardController = GameObject.Find("Controller").GetComponent<LeaderboardController>();
     }
 
     // Start is called before the first frame update.
@@ -158,6 +160,10 @@ public class CarController : MonoBehaviour
             if (gameStatus.IsGameOver())
             {
                 string winner = gameStatus.FindWinner();
+                if (winner == "Player")
+                {
+                    StartCoroutine(leaderboardController.AddScore("Player", hudController.PrintTimer()));
+                }
                 Debug.Log("Game Over " + winner + " won! " + "In " + hudController.PrintTimer() + " seconds.");
             }
         }
