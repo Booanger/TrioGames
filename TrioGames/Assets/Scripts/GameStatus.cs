@@ -8,9 +8,11 @@ public class GameStatus : MonoBehaviour
     private int currentLapOfThePlayer = 0;
     CarController[] allCars;
     int[] lapCountsOfPlayers;
+    int rank;
 
     private void Awake()
     {
+        rank = 0;
         allCars = FindObjectsOfType<CarController>();
         lapCountsOfPlayers = new int[allCars.Length];
         for (int i = 0; i < allCars.Length; i++) {
@@ -42,12 +44,22 @@ public class GameStatus : MonoBehaviour
     public bool IsGameOver()
     {
         for (int i = 0; i < allCars.Length; i++) {
-            if (lapCountsOfPlayers[i] > lapCount) {
-                return true;
+            if (lapCountsOfPlayers[i] == lapCount + 1) {
+                lapCountsOfPlayers[i]++;
+                rank++;
+                if (allCars[i].name == "Player")
+                {
+                    allCars[i].gameObject.SetActive(false);
+                    return true;
+                }
+                allCars[i].gameObject.SetActive(false);
+                return false;
             }
         }
         return false;
     }
+
+    /*
     public string FindWinner()
     {
         string winnerCarName = "";
@@ -59,5 +71,10 @@ public class GameStatus : MonoBehaviour
             }
         }
         return winnerCarName;
+    }*/
+
+    public int getRank()
+    {
+        return rank;
     }
 }

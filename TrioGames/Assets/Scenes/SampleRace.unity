@@ -7437,7 +7437,7 @@ GameObject:
   - component: {fileID: 556071918}
   m_Layer: 0
   m_Name: FinishLine
-  m_TagString: Finish
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12844,7 +12844,7 @@ GameObject:
   - component: {fileID: 626669858}
   m_Layer: 0
   m_Name: start-finish
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12876,7 +12876,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1.23}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -12887,7 +12887,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.2, y: 1.16}
+  m_Size: {x: 18.65, y: 1.88}
   m_EdgeRadius: 0
 --- !u!212 &626669859
 SpriteRenderer:
@@ -30021,7 +30021,6 @@ GameObject:
   - component: {fileID: 1499541452}
   - component: {fileID: 1499541454}
   - component: {fileID: 1499541453}
-  - component: {fileID: 1499541455}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -30133,18 +30132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lapCount: 3
---- !u!114 &1499541455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499541449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b6b599da96108e4eab13ed1c7961e4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1507011373
 GameObject:
   m_ObjectHideFlags: 0
