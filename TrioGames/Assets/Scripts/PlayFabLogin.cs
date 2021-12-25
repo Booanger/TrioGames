@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PlayFabLogin : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayFabLogin : MonoBehaviour
     [SerializeField] TMP_InputField signinEmail;
     [SerializeField] TMP_InputField signinPassword;
     [SerializeField] TMP_Text logText;
+
+    public static string currentUserPlayFabId;
 
     private String userEmail;
     private String userPassword;
@@ -35,8 +38,11 @@ public class PlayFabLogin : MonoBehaviour
 
         PlayerPrefs.SetString("EMAIL", userEmail);
         PlayerPrefs.SetString("PASSWORD", userPassword);
-
+        currentUserPlayFabId = result.PlayFabId;
         SceneManager.LoadScene("MenuScene");
+        
+        //SetUserData();
+        //GetUserData(result.PlayFabId);
     }
     void OnLogInFailure(PlayFabError error)
     {
@@ -75,6 +81,40 @@ public class PlayFabLogin : MonoBehaviour
         {
             loginEmail.text = PlayerPrefs.GetString("EMAIL");
             loginPassword.text = PlayerPrefs.GetString("PASSWORD");
+            //OnClickLogin();
         }
+    }
+
+    //Set current player's score
+    void SetUserData()
+    {
+        PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest()
+        {
+            Data = new Dictionary<string, string>() {
+            {"Ancestor", "Arthur"},
+            {"Successor", "Fred"}
+        }
+        },
+        result => Debug.Log("Successfully updated user data"),
+        error => {
+            Debug.Log("Got error setting user data Ancestor to Arthur");
+            Debug.Log(error.GenerateErrorReport());
+        });
+    }
+
+    void GetUserData(string myPlayFabeId)
+    {
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest()
+        {
+            PlayFabId = myPlayFabeId,
+            Keys = null
+        }, result => {
+            Debug.Log("Got user data:");
+            if (result.Data == null || !result.Data.ContainsKey("Ancestor")) Debug.Log("No Ancestor");
+            else Debug.Log("Ancestor: " + result.Data["Ancestor"].Value);
+        }, (error) => {
+            Debug.Log("Got error retrieving user data:");
+            Debug.Log(error.GenerateErrorReport());
+        });
     }
 }

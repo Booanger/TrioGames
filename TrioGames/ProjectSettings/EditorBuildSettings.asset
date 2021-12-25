@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: dade39541ede52e4d9acfa50a542e52d
   - enabled: 1
-    path: Assets/Scenes/SampleRace.unity
+    path: Assets/Scenes/race1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

@@ -79,4 +79,9 @@ public class HUDController : MonoBehaviour
     {
         return timeCounter.text;
     }
+
+    public float GetTime()
+    {
+        return timeStart;
+    }
 }
