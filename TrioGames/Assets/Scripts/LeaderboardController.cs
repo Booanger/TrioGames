@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using UnityEngine.SceneManagement;
 
 public class LeaderboardController : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class LeaderboardController : MonoBehaviour
         var requestLeaderboard = new GetLeaderboardRequest
         {
             StartPosition = 0,
-            StatisticName = "race1",
+            //StatisticName = "race1",
+            StatisticName = SceneManager.GetActiveScene().name,
             MaxResultsCount = 10
         };
         PlayFabClientAPI.GetLeaderboard(requestLeaderboard, OnGetLeaderboard, OnErrorLeaderboard);
@@ -31,7 +33,8 @@ public class LeaderboardController : MonoBehaviour
             LeaderboardListing LL = tempListing.GetComponent<LeaderboardListing>();
             LL.playerPosText.text = rank.ToString();
             LL.playerNameText.text = player.DisplayName;
-            LL.playerScoreText.text = player.StatValue.ToString();
+            LL.playerScoreText.text = (((float)player.StatValue) / -100).ToString() + " sec";
+            //LL.playerScoreText.text = player.StatValue.ToString();
             rank++;
         }
     }
