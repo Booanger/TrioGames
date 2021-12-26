@@ -33,8 +33,6 @@ public class PlayFabLogin : MonoBehaviour
     void OnLogInSuccess(LoginResult result)
     {
         logText.text = "Logging In...";
-        entityId = result.EntityToken.Entity.Id;
-        entityType = result.EntityToken.Entity.Type;
 
         PlayerPrefs.SetString("EMAIL", userEmail);
         PlayerPrefs.SetString("PASSWORD", userPassword);
@@ -55,7 +53,7 @@ public class PlayFabLogin : MonoBehaviour
         username = signinUsername.text;
         userEmail = signinEmail.text;
         userPassword = signinPassword.text;
-        var registerRequest = new RegisterPlayFabUserRequest { Email = userEmail, Password = userPassword, Username = username};
+        var registerRequest = new RegisterPlayFabUserRequest { Email = userEmail, Password = userPassword, Username = username, DisplayName = username};
         PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnRegisterSuccess, OnRegisterFailure);
     }
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
