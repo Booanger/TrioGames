@@ -1,6 +1,6 @@
 using PlayFab;
 using PlayFab.ClientModels;
-using System.Collections;
+//using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -64,7 +64,7 @@ public class GameStatus : MonoBehaviour
                         // request.Statistics is a list, so multiple StatisticUpdate objects can be defined if required.
                         Statistics = new List<StatisticUpdate> 
                         {
-                            new StatisticUpdate { StatisticName = SceneManager.GetActiveScene().name, Value = (int)(hudController.GetTime() * 100)},
+                            new StatisticUpdate { StatisticName = SceneManager.GetActiveScene().name, Value = (int)(hudController.GetTime() * -100)},
                         }
                     }, result => 
                     { 
@@ -123,6 +123,10 @@ public class GameStatus : MonoBehaviour
         return rankString;
     }
 
+
+    /**
+     * THIS METHOD/FUNCTION WILL BE EDITED
+     */
     void GetUserData(string myPlayFabId)
     {
         PlayFabClientAPI.GetUserData(new GetUserDataRequest()
