@@ -54,6 +54,7 @@ public class GameStatus : MonoBehaviour
                 rank++;
                 if (allCars[i].name == "Player")
                 {
+                    hudController.FinishedLapCountText();
                     allCars[i].gameObject.SetActive(false);
                     //PlayFabLogin.currentUserPlayFabId
 
@@ -103,9 +104,23 @@ public class GameStatus : MonoBehaviour
         return winnerCarName;
     }*/
 
-    public int getRank()
+    public int GetRank()
     {
         return rank;
+    }
+    public string GetRankString()
+    {
+        string rankString = rank.ToString();
+        if (rank % 10 == 1) {
+            rankString += "st";
+        } else if (rank % 10 == 2) {
+            rankString += "nd";
+        } else if (rank % 10 == 3) {
+            rankString += "rd";
+        } else {
+            rankString += "th";
+        }
+        return rankString;
     }
 
     void GetUserData(string myPlayFabId)
@@ -129,7 +144,7 @@ public class GameStatus : MonoBehaviour
         PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest()
         {
             Data = new Dictionary<string, string>() {
-            {SceneManager.GetActiveScene().name, getRank().ToString()},
+            {SceneManager.GetActiveScene().name, GetRank().ToString()},
         }
         },
         result => Debug.Log("Successfully updated user data"),
