@@ -19,9 +19,6 @@ public class CarController : MonoBehaviour
     float rotationAngle = 0;
     float velocityVersusUp = 0;
 
-    HUDController hudController;
-    GameStatus gameStatus;
-
     // Components
     Rigidbody2D carRigidbody2D;
 
@@ -29,8 +26,6 @@ public class CarController : MonoBehaviour
     private void Awake()
     {
         carRigidbody2D = GetComponent<Rigidbody2D>();
-        hudController = GameObject.Find("Controller").GetComponent<HUDController>();
-        gameStatus = GameObject.Find("Controller").GetComponent<GameStatus>();
     }
 
     // Start is called before the first frame update.
@@ -144,26 +139,5 @@ public class CarController : MonoBehaviour
     public float GetVelocityVersusUp()
     {
         return velocityVersusUp;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Finish") {
-            String carName = gameObject.name;
-            gameStatus.IncreaseLapOfThePlayers(carName);
-            if (carName == "Player")
-            {
-                hudController.IncreaseLapCountText();
-            }
-            if (gameStatus.IsGameOver())
-            {
-                //string winner = gameStatus.FindWinner();
-
-                int rank = gameStatus.getRank();
-
-                //transform.gameObject.active = false;
-                Debug.Log("Game Over In " + hudController.PrintTimer() + " seconds. Rank: " + rank);
-            }
-        }
-    }
+    }   
 }

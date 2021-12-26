@@ -10,6 +10,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] TMP_Text countdown;
     [SerializeField] TMP_Text timeCounter;
     [SerializeField] TMP_Text lapCountText;
+    [SerializeField] TMP_Text rankText;
 
     [SerializeField] GameObject playerCar;
     CarController[] allCars;
@@ -75,6 +76,11 @@ public class HUDController : MonoBehaviour
         gameStatus.IncreaseCurrentLap();
         lapCountText.text = String.Format("Lap: {0}/{1}", gameStatus.GetCurrentLap(), gameStatus.GetLapCount());
     }
+    public void FinishedLapCountText()
+    {
+        lapCountText.text = "Finished!";
+    }
+
     public string PrintTimer()
     {
         return timeCounter.text;
@@ -83,5 +89,14 @@ public class HUDController : MonoBehaviour
     public float GetTime()
     {
         return timeStart;
+    }
+
+    public void SetRankText(string rank)
+    {
+        rankText.text = rank;
+    }
+    public string GetRankText()
+    {
+        return rankText.ToString();
     }
 }
