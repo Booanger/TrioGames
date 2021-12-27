@@ -4281,15 +4281,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points:
-  - {fileID: 626669857}
-  - {fileID: 1248627838}
-  - {fileID: 805955136}
-  - {fileID: 55357154}
-  - {fileID: 305745358}
-  - {fileID: 107312204}
-  - {fileID: 556291131}
-  - {fileID: 1415436360}
-  - {fileID: 1856724322}
+  - {fileID: 626669858}
+  - {fileID: 1248627839}
+  - {fileID: 805955137}
+  - {fileID: 55357155}
+  - {fileID: 305745359}
+  - {fileID: 107312205}
+  - {fileID: 556291132}
+  - {fileID: 1415436361}
+  - {fileID: 1856724323}
 --- !u!114 &1499541453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4323,7 +4323,7 @@ MonoBehaviour:
   m_VoxelSize: 0.33333334
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
-  m_NavMeshData: {fileID: 23800000, guid: 7100f25374c1bf249b9a840fc91c6e05, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 9f4d768d4cfca414bb74d85ab7d1f233, type: 2}
 --- !u!114 &1499541454
 MonoBehaviour:
   m_ObjectHideFlags: 0

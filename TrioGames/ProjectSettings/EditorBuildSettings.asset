@@ -15,18 +15,18 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelection.unity
     guid: 6a6be0b73b443d947bd52c740c2bc488
   - enabled: 1
-    path: Assets/Scenes/race1.unity
+    path: Assets/Scenes/1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/race2.unity
+    path: Assets/Scenes/2.unity
     guid: c30457082e4bd58479925055a8992c8a
   - enabled: 1
-    path: Assets/Scenes/race3.unity
+    path: Assets/Scenes/3.unity
     guid: 89134ec2efba27f439dbd9bb05ff698c
   - enabled: 1
-    path: Assets/Scenes/race4.unity
+    path: Assets/Scenes/4.unity
     guid: 5df8ecc80e745c24ca38dc7364964784
   - enabled: 1
-    path: Assets/Scenes/race5.unity
+    path: Assets/Scenes/5.unity
     guid: 5eddd5e22f0ae154a8ae3357601be633
   m_configObjects: {}

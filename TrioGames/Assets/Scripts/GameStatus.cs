@@ -1,5 +1,6 @@
 using PlayFab;
 using PlayFab.ClientModels;
+using System;
 //using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -127,34 +128,47 @@ public class GameStatus : MonoBehaviour
     /**
      * THIS METHOD/FUNCTION WILL BE EDITED
      */
-    void GetUserData(string myPlayFabId)
+    int GetUserData(string myPlayFabId)
     {
+        int maxRace = 0;
         PlayFabClientAPI.GetUserData(new GetUserDataRequest()
         {
             PlayFabId = myPlayFabId,
             Keys = null
         }, result => {
+            if (result.Data != null)
+            {
+                maxRace = Convert.ToInt32(result.Data["maxRace"].Value);
+            }
+            /*
             Debug.Log("Got user data:");
-            if (result.Data == null || !result.Data.ContainsKey("Ancestor")) Debug.Log("No Ancestor");
-            else Debug.Log(SceneManager.GetActiveScene().name +": " + result.Data[SceneManager.GetActiveScene().name].Value);
+            if (result.Data == null || !result.Data.ContainsKey("Ancestor")) 
+                Debug.Log("No Ancestor");
+            else 
+                Debug.Log(SceneManager.GetActiveScene().name +": " + result.Data[SceneManager.GetActiveScene().name].Value);*/
         }, (error) => {
             Debug.Log("Got error retrieving user data:");
             Debug.Log(error.GenerateErrorReport());
         });
+        return maxRace;
     }
 
     void SetUserData()
     {
-        PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest()
+        int maxRace = GetUserData(PlayFabLogin.currentUserPlayFabId);
+        if (rank < 4 && maxRace < Convert.ToInt32(SceneManager.GetActiveScene().name))
         {
-            Data = new Dictionary<string, string>() {
-            {SceneManager.GetActiveScene().name, GetRank().ToString()},
+            PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest()
+            {
+                Data = new Dictionary<string, string>() 
+                {
+                    {"maxRace", SceneManager.GetActiveScene().name}
+                }
+            }, result => Debug.Log("Successfully updated user data"),
+            error => {
+                Debug.Log("Got error setting user data Ancestor to Arthur");
+                Debug.Log(error.GenerateErrorReport());
+            });
         }
-        },
-        result => Debug.Log("Successfully updated user data"),
-        error => {
-            Debug.Log("Got error setting user data Ancestor to Arthur");
-            Debug.Log(error.GenerateErrorReport());
-        });
     }
 }
