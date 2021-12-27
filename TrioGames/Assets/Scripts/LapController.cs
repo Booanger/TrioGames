@@ -8,24 +8,40 @@ public class LapController : MonoBehaviour
     GameStatus gameStatus;
     HUDController hudController;
     LeaderboardController leaderboardController;
+    CheckpointsController cpController;
     void Start()
     {
         //checkpoints = GameObject.FindObjectsOfType<BoxCollider2D>();
         leaderboardController = GameObject.Find("Controller").GetComponent<LeaderboardController>();
         hudController = GameObject.Find("Controller").GetComponent<HUDController>();
         gameStatus = GameObject.Find("Controller").GetComponent<GameStatus>();
+        cpController = GameObject.Find("Controller").GetComponent<CheckpointsController>();
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gameObject.tag == "Finish" && true)
+        if (gameObject.tag == "Finish")
         {
             string carName = collision.name;
-            gameStatus.IncreaseLapOfThePlayers(carName);
-            if (carName == "Player")
+            
+            //TEST
+            if (carName.Equals("Player") && cpController.GetPlayerDestinationName() == "finish")
             {
+                //Debug.Log(gameObject.name);
                 hudController.IncreaseLapCountText();
+                gameStatus.IncreaseLapOfThePlayers(carName);
+                cpController.increasePlayerDestination();
             }
+            else if (carName != "Player")
+            {
+                gameStatus.IncreaseLapOfThePlayers(carName);
+            }
+
+            //gameStatus.IncreaseLapOfThePlayers(carName);
+            //if (carName == "Player")
+            //{
+                //hudController.IncreaseLapCountText();
+            //}
             if (gameStatus.IsGameOver())
             {
                 //string winner = gameStatus.FindWinner();
