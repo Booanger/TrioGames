@@ -139,5 +139,10 @@ public class CarController : MonoBehaviour
     public float GetVelocityVersusUp()
     {
         return velocityVersusUp;
-    }   
+    }
+
+    public float GetVelocityMagnitude()
+    {
+        return carRigidbody2D.velocity.magnitude;
+    }
 }
