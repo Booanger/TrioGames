@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class LapController : MonoBehaviour
 {
+    //BoxCollider2D[] checkpoints;
     GameStatus gameStatus;
     HUDController hudController;
     LeaderboardController leaderboardController;
     void Start()
     {
+        //checkpoints = GameObject.FindObjectsOfType<BoxCollider2D>();
         leaderboardController = GameObject.Find("Controller").GetComponent<LeaderboardController>();
         hudController = GameObject.Find("Controller").GetComponent<HUDController>();
         gameStatus = GameObject.Find("Controller").GetComponent<GameStatus>();
@@ -16,7 +18,7 @@ public class LapController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (gameObject.tag == "Finish")
+        if (gameObject.tag == "Finish" && true)
         {
             string carName = collision.name;
             gameStatus.IncreaseLapOfThePlayers(carName);
