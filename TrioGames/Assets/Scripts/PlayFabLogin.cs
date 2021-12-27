@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PlayFabLogin : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayFabLogin : MonoBehaviour
     [SerializeField] TMP_InputField signinEmail;
     [SerializeField] TMP_InputField signinPassword;
     [SerializeField] TMP_Text logText;
+    public static int playerLevel = 0;
 
     public static string currentUserPlayFabId;
 
@@ -36,8 +38,13 @@ public class PlayFabLogin : MonoBehaviour
 
         PlayerPrefs.SetString("EMAIL", userEmail);
         PlayerPrefs.SetString("PASSWORD", userPassword);
+
+
         currentUserPlayFabId = result.PlayFabId;
-        SceneManager.LoadScene("MenuScene");
+        GetUserData(currentUserPlayFabId);
+
+        StartCoroutine(LoadScreen("MenuScene", 1));
+        //SceneManager.LoadScene("MenuScene");
         
         //SetUserData();
         //GetUserData(result.PlayFabId);
@@ -83,23 +90,6 @@ public class PlayFabLogin : MonoBehaviour
         }
     }
 
-    //Set current player's score
-    void SetUserData()
-    {
-        PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest()
-        {
-            Data = new Dictionary<string, string>() {
-            {"Ancestor", "Arthur"},
-            {"Successor", "Fred"}
-        }
-        },
-        result => Debug.Log("Successfully updated user data"),
-        error => {
-            Debug.Log("Got error setting user data Ancestor to Arthur");
-            Debug.Log(error.GenerateErrorReport());
-        });
-    }
-
     void GetUserData(string myPlayFabeId)
     {
         PlayFabClientAPI.GetUserData(new GetUserDataRequest()
@@ -107,12 +97,21 @@ public class PlayFabLogin : MonoBehaviour
             PlayFabId = myPlayFabeId,
             Keys = null
         }, result => {
-            Debug.Log("Got user data:");
-            if (result.Data == null || !result.Data.ContainsKey("Ancestor")) Debug.Log("No Ancestor");
-            else Debug.Log("Ancestor: " + result.Data["Ancestor"].Value);
+            if (result.Data != null)
+            {
+                playerLevel = Convert.ToInt32(result.Data["maxRace"].Value);
+                Debug.Log(playerLevel); //databasedeki degeri dönüyor
+            }
         }, (error) => {
             Debug.Log("Got error retrieving user data:");
             Debug.Log(error.GenerateErrorReport());
         });
+        Debug.Log(playerLevel); //ilk degeri dönüyor
+    }
+
+    private IEnumerator LoadScreen(string name, float time)
+    {
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene("MenuScene");
     }
 }
