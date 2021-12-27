@@ -8,7 +8,7 @@ public class LevelSelectController : MonoBehaviour
 {
 
     // playerlevel verisi veritabanından gelecek
-    int playerLevel = 3;
+    int playerLevel = 5;
     [SerializeField] GameObject levels;
     [SerializeField] Sprite LOCKED_LEVEL_SPRITE;
     GameObject[] allLevels;

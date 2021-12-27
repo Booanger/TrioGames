@@ -48,6 +48,7 @@ public class LapController : MonoBehaviour
 
                 int rank = gameStatus.GetRank();
                 hudController.SetRankText(gameStatus.GetRankString());
+                hudController.StopTimer();
                 //transform.gameObject.active = false;
                 Debug.Log("Game Over In " + hudController.PrintTimer() + " seconds. Rank: " + rank);
                 StartCoroutine(WaitForLeaderboard());
