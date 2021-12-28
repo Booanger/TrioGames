@@ -744,9 +744,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556b057cd6f9004478a3fe90a3ee13ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboardPanel: {fileID: 0}
+  leaderboardPanel: {fileID: 352283279}
   listingPrefab: {fileID: 8921864176760372420, guid: 311e41b893cae0145860fd7712361ccf, type: 3}
-  listingContainer: {fileID: 0}
+  listingContainer: {fileID: 823422308}
 --- !u!114 &253226842
 MonoBehaviour:
   m_ObjectHideFlags: 0
