@@ -55,6 +55,7 @@ public class GameStatus : MonoBehaviour
                 rank++;
                 if (allCars[i].name == "Player")
                 {
+                    hudController.StopTimer();
                     hudController.FinishedLapCountText();
                     allCars[i].gameObject.SetActive(false);
                     //PlayFabLogin.currentUserPlayFabId

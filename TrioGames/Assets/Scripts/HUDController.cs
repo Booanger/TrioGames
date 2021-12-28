@@ -99,4 +99,8 @@ public class HUDController : MonoBehaviour
     {
         return rankText.ToString();
     }
+    public void StopTimer()
+    {
+        timerActive = false;
+    }
 }
