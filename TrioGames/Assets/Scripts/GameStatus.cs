@@ -140,6 +140,7 @@ public class GameStatus : MonoBehaviour
             if (result.Data != null)
             {
                 maxRace = Convert.ToInt32(result.Data["maxRace"].Value);
+                
             }
             /*
             Debug.Log("Got user data:");
@@ -159,12 +160,15 @@ public class GameStatus : MonoBehaviour
         int maxRace = GetUserData(PlayFabLogin.currentUserPlayFabId);
         if (rank < 4 && maxRace < Convert.ToInt32(SceneManager.GetActiveScene().name))
         {
+            PlayFabLogin.playerLevel = Convert.ToInt32(SceneManager.GetActiveScene().name);
+
             PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest()
             {
                 Data = new Dictionary<string, string>() 
                 {
                     {"maxRace", SceneManager.GetActiveScene().name}
                 }
+
             }, result => Debug.Log("Successfully updated user data"),
             error => {
                 Debug.Log("Got error setting user data Ancestor to Arthur");

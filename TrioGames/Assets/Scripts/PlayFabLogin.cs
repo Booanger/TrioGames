@@ -112,6 +112,6 @@ public class PlayFabLogin : MonoBehaviour
     private IEnumerator LoadScreen(string name, float time)
     {
         yield return new WaitForSeconds(time);
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene(name);
     }
 }

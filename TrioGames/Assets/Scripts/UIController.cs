@@ -18,4 +18,18 @@ public class UIController : MonoBehaviour
     {
         settingsPanel.SetActive(false);
     }
+
+    public void LoadMenu(string sceneName)
+    {
+
+        StartCoroutine(LoadScreen(sceneName, 1));
+    }
+
+    private IEnumerator LoadScreen(string name, float time)
+    {
+        yield return new WaitForSeconds(time);
+        //SceneManager.LoadScene(name);
+        //SceneManager.UnloadScene(name);
+        SceneManager.LoadScene(name);
+    }
 }

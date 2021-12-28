@@ -64902,7 +64902,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1499541456}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: LoadMenu
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
